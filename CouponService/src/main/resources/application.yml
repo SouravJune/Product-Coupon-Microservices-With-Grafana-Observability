@@ -1,0 +1,66 @@
+#MySQL Database Configuration:
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: Sourav#8699
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    show-sql: true
+
+  application:
+    name: COUPON-SERVICE
+
+#Eureka Server Configuration:
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true # Indicates whether this instance should register its information with eureka server for discovery by others
+    fetch-registry: true # Indicates whether this client should fetch eureka registry information from eureka server.
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    should-unregister-on-shutdown: true
+
+
+#Actuator Endpoint Configuration:
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  #Prometheus Configuration:
+  observations:
+    key-values:
+      application: COUPON-SERVICE
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+
+  #Tracing Configuration:
+  tracing:
+    sampling:
+      probability: 1.0 # sampling all in dev, reduce it in prod to save loading
+
+#Logging Visibility Configuration:
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+

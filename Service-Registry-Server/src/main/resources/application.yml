@@ -1,0 +1,13 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false # Indicates whether this instance should register its information with eureka server for discovery by others
+    fetch-registry: false # Indicates whether this client should fetch eureka registry information from eureka server.
