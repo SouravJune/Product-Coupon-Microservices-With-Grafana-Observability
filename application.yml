@@ -31,8 +31,3 @@ management:
   tracing:
     sampling:
       probability: 1.0 # sampling all in dev, reduce it in prod to save loading
-
-#Logging Visibility Configuration:
-logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
