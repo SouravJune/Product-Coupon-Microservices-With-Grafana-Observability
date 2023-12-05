@@ -43,4 +43,4 @@ management:
 com:
   ms:
     spring-cloud:
-      prop: local-bus-1234
+      prop: local-bus
