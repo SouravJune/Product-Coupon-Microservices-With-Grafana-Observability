@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 		problemDetails.setType(URI.create("http://localhost:8080/api/v1/errors/resource-not-found"));
 		problemDetails.setStatus(HttpStatus.NOT_FOUND);
 		problemDetails.setProperty("timestamp", LocalDateTime.now());
-		problemDetails.setProperty("port", 8080);
+		problemDetails.setProperty("port", 9191);
 		problemDetails.setProperty("host", "localhost");
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)

@@ -48,6 +48,11 @@ management:
     key-values:
       application: PRODUCT-SERVICE
 
+#Logging Visibility Configuration:
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
 # While multiple instances are running if we change any configuration
 # we need to refresh all the running instance og the application
 # using @RefreshScope annotation and need to hit /actuator/refresh
