@@ -1,8 +1,10 @@
 package com.ms.product.service;
 
 import com.ms.product.exception.ResourceNotFoundException;
+import com.ms.product.model.Product;
 import com.ms.product.payload.Coupon;
 import com.ms.product.payload.ProductRequest;
+import com.ms.product.repository.ProductRepository;
 import com.ms.product.restclients.CouponClient;
 import feign.FeignException;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -10,9 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.ms.product.model.Product;
-import com.ms.product.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
