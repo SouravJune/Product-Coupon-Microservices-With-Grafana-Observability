@@ -15,8 +15,8 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
 	public ResponseEntity<ProblemDetail> handlerResourceNotFoundException(ResourceNotFoundException exception){
-		
-		ProblemDetail problemDetails = ProblemDetail.forStatus(HttpStatus.NOT_ACCEPTABLE);
+
+		ProblemDetail problemDetails = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
 		problemDetails.setTitle("ResourceNotFoundException");
 		problemDetails.setDetail(exception.getMessage());
 		problemDetails.setType(URI.create("http://localhost:8080/api/v1/errors/resource-not-found"));

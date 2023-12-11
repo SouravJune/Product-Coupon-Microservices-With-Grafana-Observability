@@ -8,6 +8,7 @@ import com.ms.product.repository.ProductRepository;
 import com.ms.product.restclients.CouponClient;
 import feign.FeignException;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,16 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	@Retry(name = "productService", fallbackMethod = "productServiceFallBack")
+	@Observed(
+			name = "user.name",
+			contextualName = "Product ---> Coupon",
+			lowCardinalityKeyValues = {"userType", "userType2"}
+	)
 	public Product createProduct(ProductRequest product) {
 
 		try {
 			Coupon coupon = couponClient.getCouponByCode(product.getCouponCode());
+			logger.info("Got Data From Coupon Service");
 
 			Product newProduct = new Product();
 			newProduct.setProductName(product.getProductName());

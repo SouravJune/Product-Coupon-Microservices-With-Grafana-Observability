@@ -21,7 +21,7 @@ import com.ms.coupon.service.CouponService;
 
 @RestController
 @RequestMapping("/couponapi")
-@Observed
+@Observed(name = "user.name")
 public class CouponController {
 
 	@Autowired

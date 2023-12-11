@@ -7,7 +7,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@Observed
+@Observed(name = "user.name")
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
