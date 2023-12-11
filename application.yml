@@ -20,27 +20,21 @@ management:
     web:
       exposure:
         include: "*"
-    metrics:
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: true
+
+  #Matrices Configuration:
+  metrics:
+  distribution:
+    percentiles-histogram:
+      http:
+        server:
+          requests: true
 
   #Tracing Configuration:
   tracing:
     sampling:
       probability: 1.0 # sampling all in dev, reduce it in prod to save loading
 
-
-# While multiple instances are running if we change any configuration
-# we need to refresh all the running instance og the application
-# using @RefreshScope annotation and need to hit /actuator/refresh
-# and we need to hit /actuator/refresh end point for all the running instance
-# so to solve this problem we have spring-cloud-bus using this we can
-# refresh any instance by hitting /actuator/bus-refresh and all the instance
-# will get the updated configuration.
 com:
   ms:
     spring-cloud:
-      prop: local-bus-1
+      prop: local-bus-1234
